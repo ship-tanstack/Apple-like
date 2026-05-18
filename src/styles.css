@@ -1,5 +1,21 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700;800&display=swap');
 @import "tailwindcss";
+
+:root {
+  color-scheme: dark;
+  font-family: 'Instrument Sans', 'Helvetica Neue', sans-serif;
+  background:
+    radial-gradient(circle at top, rgba(86, 118, 255, 0.22), transparent 28%),
+    linear-gradient(180deg, #040507 0%, #0b0d12 38%, #f3f4f7 100%);
+  color: #f5f7fb;
+  --page-width: min(1200px, calc(100vw - 48px));
+  --ease-apple: cubic-bezier(0.22, 1, 0.36, 1);
+  --panel: rgba(255, 255, 255, 0.08);
+  --panel-strong: rgba(255, 255, 255, 0.12);
+  --stroke: rgba(255, 255, 255, 0.14);
+  --text-muted: rgba(245, 247, 251, 0.68);
+}
 
 * {
   box-sizing: border-box;
@@ -13,5 +29,1075 @@ body,
 
 body {
   margin: 0;
+  background:
+    radial-gradient(circle at top, rgba(86, 118, 255, 0.16), transparent 30%),
+    linear-gradient(180deg, #040507 0%, #0b0d12 35%, #eef1f6 100%);
+  color: #f5f7fb;
+  font-family: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+#app {
+  overflow-x: clip;
+}
+
+.apple-page {
+  position: relative;
+  isolation: isolate;
+}
+
+.apple-page::before {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background:
+    radial-gradient(circle at 20% 0%, rgba(120, 133, 255, 0.14), transparent 24%),
+    radial-gradient(circle at 80% 8%, rgba(92, 231, 255, 0.08), transparent 26%);
+  content: '';
+  pointer-events: none;
+}
+
+.apple-page::after {
+  position: fixed;
+  inset: auto 0 0;
+  z-index: -1;
+  height: 40vh;
+  background: linear-gradient(180deg, rgba(241, 244, 248, 0), rgba(241, 244, 248, 0.96));
+  content: '';
+  pointer-events: none;
+}
+
+.apple-nav,
+.hero-section,
+.metric-strip,
+.story-section,
+.camera-section,
+.finish-section,
+.cta-section {
+  width: var(--page-width);
+  margin: 0 auto;
+}
+
+.apple-nav {
+  position: sticky;
+  top: 20px;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-top: 20px;
+  padding: 16px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  background: rgba(9, 11, 17, 0.58);
+  backdrop-filter: blur(28px);
+  box-shadow: 0 16px 50px rgba(0, 0, 0, 0.24);
+}
+
+.nav-mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.94rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.nav-mark-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #ffffff, #7f90ff);
+  box-shadow: 0 0 18px rgba(127, 144, 255, 0.58);
+}
+
+.nav-links {
+  display: inline-flex;
+  gap: 28px;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.95rem;
+}
+
+.nav-links a,
+.nav-cta,
+.primary-button,
+.secondary-button,
+.finish-card,
+.feature-card {
+  transition:
+    transform 500ms var(--ease-apple),
+    opacity 500ms var(--ease-apple),
+    background-color 500ms var(--ease-apple),
+    border-color 500ms var(--ease-apple),
+    box-shadow 500ms var(--ease-apple);
+}
+
+.nav-links a:hover,
+.nav-links a:focus-visible {
+  color: #fff;
+}
+
+.nav-cta,
+.primary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 18px;
+  border-radius: 999px;
+  background: #f5f7fb;
+  color: #07090d;
+  font-weight: 600;
+}
+
+.nav-cta:hover,
+.primary-button:hover,
+.secondary-button:hover {
+  transform: translateY(-2px);
+}
+
+.hero-section {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  align-items: center;
+  gap: 56px;
+  min-height: calc(100vh - 120px);
+  padding: 72px 0 48px;
+}
+
+.eyebrow {
+  margin: 0 0 16px;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.hero-copy h1,
+.section-heading h2,
+.camera-copy h2,
+.cta-section h2 {
+  margin: 0;
+  letter-spacing: -0.05em;
+  line-height: 0.94;
+}
+
+.hero-copy h1 {
+  max-width: 10ch;
+  font-size: clamp(4rem, 9vw, 7.5rem);
+}
+
+.hero-text,
+.section-heading p,
+.camera-copy p,
+.cta-section p,
+.feature-card p,
+.finish-card p,
+.ambient-copy p {
+  color: var(--text-muted);
+  font-size: 1.02rem;
+  line-height: 1.72;
+}
+
+.hero-text {
+  max-width: 56ch;
+  margin: 24px 0 0;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 32px;
+}
+
+.secondary-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 0 18px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  color: #fff;
+  backdrop-filter: blur(18px);
+}
+
+.device-theater {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 760px;
+}
+
+.device-aura {
+  position: absolute;
+  width: 88%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, rgba(104, 118, 255, 0.38) 0%, rgba(104, 118, 255, 0.1) 30%, transparent 62%),
+    radial-gradient(circle at 65% 40%, rgba(132, 236, 255, 0.28), transparent 30%);
+  filter: blur(28px);
+  animation: auraPulse 8s var(--ease-apple) infinite;
+}
+
+.headphone-sculpture {
+  position: relative;
+  width: min(560px, 94vw);
+  aspect-ratio: 1;
+  animation: headphoneFloat 7s var(--ease-apple) infinite;
+}
+
+.headband-outer,
+.headband-inner {
+  position: absolute;
+  left: 50%;
+  border-bottom: 0;
+  transform: translateX(-50%);
+}
+
+.headband-outer {
+  top: 6%;
+  width: 58%;
+  height: 44%;
+  border: 26px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px 999px 0 0;
+  box-shadow:
+    0 24px 40px rgba(0, 0, 0, 0.24),
+    inset 0 1px 0 rgba(255, 255, 255, 0.24);
+}
+
+.headband-inner {
+  top: 11%;
+  width: 46%;
+  height: 34%;
+  border: 10px solid rgba(5, 8, 14, 0.9);
+  border-radius: 999px 999px 0 0;
+}
+
+.earcup {
+  position: absolute;
+  bottom: 14%;
+  width: 182px;
+  height: 240px;
+  border-radius: 42% 42% 46% 46%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.08));
+  box-shadow:
+    0 34px 60px rgba(0, 0, 0, 0.36),
+    inset 0 1px 0 rgba(255, 255, 255, 0.34);
+}
+
+.earcup-left {
+  left: 14%;
+  transform: rotate(-10deg);
+}
+
+.earcup-right {
+  right: 14%;
+  transform: rotate(10deg);
+}
+
+.earcup-cushion,
+.earcup-driver {
+  position: absolute;
+  border-radius: inherit;
+}
+
+.earcup-cushion {
+  inset: 14px;
+  background: linear-gradient(180deg, rgba(7, 10, 16, 0.9), rgba(25, 30, 40, 0.94));
+  box-shadow: inset 0 0 0 12px rgba(255, 255, 255, 0.04);
+}
+
+.earcup-driver {
+  inset: 44px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 36% 30%, rgba(255, 255, 255, 0.28), transparent 18%),
+    radial-gradient(circle, #111723 0%, #05070d 62%, #1f2938 100%);
+  box-shadow:
+    inset 0 1px 12px rgba(255, 255, 255, 0.08),
+    0 8px 16px rgba(0, 0, 0, 0.28);
+}
+
+.headphone-badge {
+  position: absolute;
+  z-index: 1;
+  display: grid;
+  gap: 10px;
+  width: fit-content;
+  max-width: 250px;
+  padding: 16px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(20px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.headphone-badge strong {
+  color: #fff;
+  font-size: 1.1rem;
+  line-height: 1.25;
+}
+
+.headphone-badge-top {
+  top: 18%;
+  right: 0;
+}
+
+.headphone-badge-bottom {
+  bottom: 4%;
+  left: 0;
+}
+
+.headphone-shadow {
+  position: absolute;
+  right: 17%;
+  bottom: 10%;
+  left: 17%;
+  height: 52px;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(0, 0, 0, 0.38), transparent 72%);
+  filter: blur(10px);
+}
+
+.phone-shell {
+  position: relative;
+  width: min(420px, 82vw);
+  padding: 14px;
+  border-radius: 56px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.08));
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.42);
+  animation: deviceFloat 7s var(--ease-apple) infinite;
+}
+
+.phone-frame {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 44px;
+  background: linear-gradient(180deg, #05070c 0%, #0d1320 100%);
+}
+
+.phone-notch {
+  position: absolute;
+  top: 16px;
+  left: 50%;
+  z-index: 2;
+  width: 32%;
+  height: 34px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.88);
+  transform: translateX(-50%);
+}
+
+.phone-screen {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 720px;
+  padding: 82px 24px 28px;
+}
+
+.screen-gradient,
+.screen-noise,
+.screen-grid {
+  position: absolute;
+  inset: 0;
+}
+
+.screen-gradient {
+  background:
+    radial-gradient(circle at 50% 16%, rgba(145, 169, 255, 0.26), transparent 22%),
+    linear-gradient(160deg, rgba(255, 255, 255, 0.12), transparent 36%),
+    linear-gradient(180deg, rgba(20, 26, 40, 0.1), rgba(6, 8, 12, 0.76));
+}
+
+.screen-noise {
+  opacity: 0.18;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: radial-gradient(circle at center, black 40%, transparent 85%);
+}
+
+.screen-grid {
+  inset: auto 24px 188px;
+  height: 220px;
+  border-radius: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.02)),
+    radial-gradient(circle at top, rgba(107, 126, 255, 0.22), transparent 56%);
+  backdrop-filter: blur(20px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18);
+}
+
+.screen-card {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 10px;
+  width: fit-content;
+  max-width: 240px;
+  padding: 16px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(20px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.screen-card strong {
+  color: #fff;
+  font-size: 1.1rem;
+  line-height: 1.25;
+}
+
+.screen-card-bottom {
+  margin-left: auto;
+}
+
+.floating-card {
+  position: absolute;
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 14px;
+  max-width: 240px;
+  padding: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 26px;
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(24px);
+  box-shadow:
+    0 18px 40px rgba(0, 0, 0, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.floating-card strong,
+.feature-card h3,
+.ambient-copy h3,
+.finish-card h3 {
+  display: block;
+  margin-bottom: 6px;
+  color: #fff;
+  font-size: 1.08rem;
+}
+
+.floating-card span {
+  display: block;
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+.floating-card-left {
+  top: 18%;
+  left: -2%;
+  animation: floatCardLeft 8s var(--ease-apple) infinite;
+}
+
+.floating-card-right {
+  right: -2%;
+  bottom: 18%;
+  animation: floatCardRight 9s var(--ease-apple) infinite;
+}
+
+.scroll-cue {
+  grid-column: 1 / -1;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.92rem;
+}
+
+.scroll-line {
+  display: inline-block;
+  width: 56px;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.8));
+  animation: scrollLine 2.5s var(--ease-apple) infinite;
+}
+
+.metric-strip {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  padding: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 36px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(22px);
+}
+
+.metric-item {
+  display: grid;
+  gap: 8px;
+  padding: 18px;
+  border-radius: 26px;
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.68);
+}
+
+.metric-item strong {
+  color: #fff;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  letter-spacing: -0.05em;
+}
+
+.story-section,
+.finish-section,
+.cta-section {
+  padding: 140px 0 0;
+}
+
+.section-heading,
+.camera-copy,
+.cta-section {
+  max-width: 760px;
+}
+
+.section-heading h2,
+.camera-copy h2,
+.cta-section h2 {
+  font-size: clamp(2.8rem, 6vw, 5rem);
+}
+
+.section-heading p,
+.camera-copy p,
+.cta-section p {
+  margin-top: 20px;
+}
+
+.story-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  gap: 24px;
+  margin-top: 52px;
+}
+
+.feature-stack {
+  display: grid;
+  gap: 20px;
+}
+
+.feature-card,
+.ambient-panel,
+.finish-card,
+.cta-section {
+  border: 1px solid var(--stroke);
+  background: var(--panel);
+  backdrop-filter: blur(24px);
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.14);
+}
+
+.feature-card {
+  padding: 28px;
+  border-radius: 32px;
+}
+
+.feature-card:hover,
+.finish-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(255, 255, 255, 0.24);
+  background: var(--panel-strong);
+}
+
+.feature-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  margin-bottom: 18px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.ambient-panel {
+  position: relative;
+  overflow: hidden;
+  min-height: 540px;
+  padding: 34px;
+  border-radius: 38px;
+}
+
+.ambient-panel::before {
+  position: absolute;
+  inset: 20% auto auto 14%;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(126, 143, 255, 0.42), transparent 68%);
+  filter: blur(20px);
+  content: '';
+}
+
+.ambient-copy {
+  position: relative;
+  z-index: 1;
+  max-width: 420px;
+}
+
+.orbital-stage {
+  position: absolute;
+  inset: 0;
+}
+
+.orbit,
+.core-glow {
+  position: absolute;
+  inset: 50% auto auto 58%;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.orbit {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.orbit-one {
+  width: 250px;
+  height: 250px;
+  animation: rotateOrbit 16s linear infinite;
+}
+
+.orbit-two {
+  width: 360px;
+  height: 360px;
+  animation: rotateOrbit 22s linear infinite reverse;
+}
+
+.core-glow {
+  width: 140px;
+  height: 140px;
+  background:
+    radial-gradient(circle, rgba(255, 255, 255, 0.88) 0%, rgba(121, 139, 255, 0.5) 26%, transparent 70%);
+  filter: blur(6px);
+}
+
+.mini-chip {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  min-height: 42px;
+  padding: 0 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  backdrop-filter: blur(18px);
+}
+
+.mini-chip-top {
+  top: 24%;
+  right: 14%;
+  animation: floatChip 6s var(--ease-apple) infinite;
+}
+
+.mini-chip-bottom {
+  bottom: 18%;
+  left: 44%;
+  animation: floatChip 7s var(--ease-apple) infinite reverse;
+}
+
+.camera-section {
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+  align-items: center;
+  gap: 28px;
+  padding: 140px 0 0;
+}
+
+.lens-cluster {
+  position: relative;
+  min-height: 620px;
+  border-radius: 42px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background:
+    radial-gradient(circle at 50% 40%, rgba(122, 138, 255, 0.16), transparent 28%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+  backdrop-filter: blur(28px);
+  overflow: hidden;
+}
+
+.lens-cluster::before {
+  position: absolute;
+  inset: 12% 16%;
+  border-radius: 36px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.12), transparent 56%);
+  content: '';
+}
+
+.lens,
+.lens-flare {
+  position: absolute;
+  border-radius: 50%;
+}
+
+.lens {
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background:
+    radial-gradient(circle at 36% 32%, rgba(255, 255, 255, 0.2), transparent 18%),
+    radial-gradient(circle, #111722 0%, #05070d 58%, #161e2c 100%);
+  box-shadow:
+    inset 0 1px 10px rgba(255, 255, 255, 0.08),
+    0 28px 40px rgba(0, 0, 0, 0.3);
+  animation: lensDrift 12s var(--ease-apple) infinite;
+}
+
+.lens-large {
+  top: 14%;
+  left: 18%;
+  width: 180px;
+  height: 180px;
+}
+
+.lens-medium {
+  top: 34%;
+  right: 18%;
+  width: 140px;
+  height: 140px;
+  animation-delay: 1.2s;
+}
+
+.lens-small {
+  bottom: 16%;
+  left: 34%;
+  width: 120px;
+  height: 120px;
+  animation-delay: 2.2s;
+}
+
+.lens-flare {
+  inset: auto 14% 10% auto;
+  width: 240px;
+  height: 240px;
+  background: radial-gradient(circle, rgba(126, 149, 255, 0.22), transparent 68%);
+  filter: blur(24px);
+  animation: auraPulse 10s var(--ease-apple) infinite;
+}
+
+.finish-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  margin-top: 48px;
+}
+
+.finish-card {
+  padding: 24px;
+  border-radius: 32px;
+}
+
+.finish-swatch {
+  height: 320px;
+  margin-bottom: 22px;
+  border-radius: 24px;
+  background: var(--swatch);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    0 22px 34px rgba(0, 0, 0, 0.18);
+}
+
+.cta-section {
+  margin-top: 140px;
+  margin-bottom: 80px;
+  padding: 42px;
+  border-radius: 40px;
+  text-align: center;
+}
+
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(28px) scale(0.98);
+  transition:
+    opacity 880ms var(--ease-apple) var(--delay, 0ms),
+    transform 880ms var(--ease-apple) var(--delay, 0ms);
+}
+
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+@keyframes deviceFloat {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-7deg);
+  }
+
+  50% {
+    transform: translateY(-16px) rotate(-5deg);
+  }
+}
+
+@keyframes auraPulse {
+  0%,
+  100% {
+    transform: scale(0.96);
+    opacity: 0.7;
+  }
+
+  50% {
+    transform: scale(1.04);
+    opacity: 1;
+  }
+}
+
+@keyframes floatCardLeft {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(0, -14px, 0);
+  }
+}
+
+@keyframes floatCardRight {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(0, 14px, 0);
+  }
+}
+
+@keyframes scrollLine {
+  0% {
+    transform: scaleX(0.35);
+    transform-origin: left;
+    opacity: 0.5;
+  }
+
+  50% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scaleX(0.35);
+    transform-origin: right;
+    opacity: 0.5;
+  }
+}
+
+@keyframes rotateOrbit {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@keyframes floatChip {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes lensDrift {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-10px) rotate(4deg);
+  }
+}
+
+@keyframes headphoneFloat {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-2deg);
+  }
+
+  50% {
+    transform: translateY(-14px) rotate(1deg);
+  }
+}
+
+@media (max-width: 1080px) {
+  .hero-section,
+  .story-grid,
+  .camera-section,
+  .finish-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-section {
+    min-height: auto;
+    padding-top: 56px;
+  }
+
+  .device-theater {
+    min-height: 680px;
+  }
+
+  .headphone-badge-top {
+    right: 4%;
+  }
+
+  .headphone-badge-bottom {
+    left: 4%;
+  }
+
+  .floating-card-left {
+    left: 2%;
+  }
+
+  .floating-card-right {
+    right: 2%;
+  }
+}
+
+@media (max-width: 780px) {
+  :root {
+    --page-width: min(100vw - 24px, 100%);
+  }
+
+  .apple-nav {
+    flex-wrap: wrap;
+    justify-content: center;
+    border-radius: 28px;
+  }
+
+  .nav-links {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+    gap: 18px;
+  }
+
+  .hero-copy h1 {
+    max-width: none;
+    font-size: clamp(3.4rem, 17vw, 5rem);
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .headphone-sculpture {
+    width: min(420px, 100%);
+  }
+
+  .earcup {
+    width: 142px;
+    height: 196px;
+  }
+
+  .headband-outer {
+    width: 62%;
+    height: 40%;
+  }
+
+  .headband-inner {
+    width: 50%;
+    height: 31%;
+  }
+
+  .phone-shell {
+    width: min(360px, 100%);
+    border-radius: 42px;
+  }
+
+  .phone-frame {
+    border-radius: 32px;
+  }
+
+  .phone-screen {
+    min-height: 590px;
+    padding-inline: 18px;
+  }
+
+  .floating-card {
+    position: relative;
+    inset: auto;
+    max-width: none;
+  }
+
+  .headphone-badge {
+    position: relative;
+    inset: auto;
+    max-width: none;
+  }
+
+  .device-theater {
+    display: grid;
+    gap: 18px;
+    min-height: auto;
+  }
+
+  .metric-strip,
+  .finish-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .metric-strip,
+  .ambient-panel,
+  .cta-section {
+    padding: 22px;
+  }
+
+  .lens-cluster {
+    min-height: 460px;
+  }
+
+  .finish-swatch {
+    height: 240px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition-duration: 1ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
 }
 

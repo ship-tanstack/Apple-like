@@ -1,217 +1,151 @@
-Welcome to your new TanStack Start app! 
+# Astra Air · Apple-like Landing Page
 
-# Getting Started
+[![TanStack Start](https://img.shields.io/badge/TanStack_Start-FF4154?style=flat-square&logo=react&logoColor=white)](https://tanstack.com/start)
+[![TanStack Templates](https://img.shields.io/badge/TanStack_Templates-tanstackship.com-FF4154?style=flat-square)](https://tanstackship.com/)
+[![React](https://img.shields.io/badge/React-19-61DAFB?style=flat-square&logo=react&logoColor=black)](https://react.dev)
+[![TypeScript](https://img.shields.io/badge/TypeScript-6-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-4-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+[![Vite](https://img.shields.io/badge/Vite-8-646CFF?style=flat-square&logo=vite&logoColor=white)](https://vite.dev/)
+[![Cloudflare Workers](https://img.shields.io/badge/Deploy-Cloudflare-F38020?style=flat-square&logo=cloudflare&logoColor=white)](https://workers.cloudflare.com/)
 
-To run this application:
+> An Apple-inspired headphone concept landing page—restrained motion, oversized typography, layered glass, and product lighting—built with **TanStack Start** and **React 19**. Part of the [TanStack Templates](https://tanstackship.com/) ecosystem for production-ready starters and landing pages.
+
+## Overview
+
+| Dimension | Details |
+| --- | --- |
+| **Concept** | Astra Air — premium over-ear headphones |
+| **Visual language** | Dark hero → light content gradient, Instrument Sans, low-amplitude scroll reveals |
+| **Interaction** | `IntersectionObserver` reveals, CSS-only headphone sculpture, orbital motion panel |
+| **Page flow** | Nav · Hero · Metrics · Features · Form & comfort · Finishes · CTA |
+
+## Preview
+
+### Hero (desktop)
+
+![Hero section](docs/screenshots/01-hero-desktop.png)
+
+### Sound & motion narrative
+
+![Sound & Silicon section](docs/screenshots/02-metrics-features.png)
+
+### Form & comfort
+
+![Form & Comfort section](docs/screenshots/03-design-lens.png)
+
+### Finishes & conversion
+
+![Finishes and CTA](docs/screenshots/04-finishes-cta.png)
+
+### Mobile
+
+![Mobile hero](docs/screenshots/05-hero-mobile.png)
+
+### Full page
+
+<details>
+<summary>Expand full-page screenshot</summary>
+
+![Full page](docs/screenshots/06-full-page.png)
+
+</details>
+
+## Tech stack
+
+- **Framework:** [TanStack Start](https://tanstack.com/start) — SSR, file-based routing
+- **Routing:** [TanStack Router](https://tanstack.com/router) — `src/routes/`
+- **UI:** React 19 + [Lucide](https://lucide.dev/) icons
+- **Styling:** Tailwind CSS v4 + custom CSS variables and motion
+- **Build:** Vite 8
+- **Deploy:** Cloudflare Workers (`wrangler.jsonc`)
+
+## Quick start
 
 ```bash
+# Install dependencies
 pnpm install
+
+# Local dev (http://localhost:3000)
 pnpm dev
-```
 
-# Building For Production
-
-To build this application for production:
-
-```bash
+# Production build
 pnpm build
+
+# Preview production build
+pnpm preview
+
+# Deploy to Cloudflare
+pnpm deploy
 ```
 
-## Testing
+## Scripts
 
-This project uses [Vitest](https://vitest.dev/) for testing. You can run the tests with:
+| Command | Description |
+| --- | --- |
+| `pnpm dev` | Dev server (port 3000) |
+| `pnpm build` | Production build |
+| `pnpm preview` | Build + local preview |
+| `pnpm test` | Vitest unit tests |
+| `pnpm lint` | ESLint check and fix |
+| `pnpm check` | Prettier format check |
+| `pnpm deploy` | Build and deploy to Cloudflare |
+
+## Project structure
+
+```text
+apple-like/
+├── src/
+│   ├── routes/
+│   │   ├── __root.tsx      # Root layout, head, devtools
+│   │   └── index.tsx       # Landing page content
+│   ├── styles.css          # Global styles, motion, component classes
+│   └── router.tsx
+├── docs/screenshots/       # README screenshots
+├── scripts/
+│   └── capture-screenshots.mjs
+├── public/
+├── vite.config.ts
+└── wrangler.jsonc
+```
+
+## Implementation notes
+
+1. **Scroll reveals:** Elements with `data-reveal` get `is-visible` via `IntersectionObserver`, with staggered `transition-delay` in CSS.
+2. **Product sculpture:** Hero headphones are pure CSS layers (headband, earcups, glow, floating cards)—no 3D assets.
+3. **Section anchors:** `#performance`, `#design`, `#finish`, `#buy` for in-page navigation.
+4. **Responsive:** Media queries in `styles.css` for nav, hero two-column layout, and card grids.
+
+## Regenerate screenshots
+
+With the dev server running:
 
 ```bash
-pnpm test
+pnpm dev
+# In another terminal
+node scripts/capture-screenshots.mjs   # requires playwright locally
 ```
 
-## Styling
-
-This project uses [Tailwind CSS](https://tailwindcss.com/) for styling.
-
-### Removing Tailwind CSS
-
-If you prefer not to use Tailwind CSS:
-
-1. Remove the demo pages in `src/routes/demo/`
-2. Replace the Tailwind import in `src/styles.css` with your own styles
-3. Remove `tailwindcss()` from the plugins array in `vite.config.ts`
-4. Uninstall the packages: `pnpm add @tailwindcss/vite tailwindcss --dev`
-
-## Linting & Formatting
-
-
-This project uses [eslint](https://eslint.org/) and [prettier](https://prettier.io/) for linting and formatting. Eslint is configured using [tanstack/eslint-config](https://tanstack.com/config/latest/docs/eslint). The following scripts are available:
+Or capture the hero quickly with headless Chrome:
 
 ```bash
-pnpm lint
-pnpm format
-pnpm check
+"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
+  --headless=new --window-size=1440,900 \
+  --screenshot=docs/screenshots/01-hero-desktop.png \
+  http://localhost:3000/
 ```
 
+## TanStack Templates
 
-## Deploy to Cloudflare Workers
+This landing page fits the **landing page** category on [TanStack Templates](https://tanstackship.com/)—handcrafted TanStack boilerplates, starters, and kits for SaaS, dashboards, and marketing sites.
 
-This project uses the Cloudflare Vite plugin (configured in `vite.config.ts`) and `wrangler.jsonc`:
+Explore more TanStack Start projects:
 
-1. Install Wrangler: `npm install -g wrangler`
-2. Authenticate: `wrangler login`
-3. Deploy: `npx wrangler deploy`
+- **[Browse all TanStack Templates →](https://tanstackship.com/)**
+- [Free TanStack templates](https://tanstackship.com/)
+- [TanStack Start docs](https://tanstack.com/start)
+- [TanStack Router docs](https://tanstack.com/router)
+- [Cloudflare Workers deployment](https://developers.cloudflare.com/workers/)
 
-For production env vars, run `wrangler secret put MY_VAR` for each secret listed in `.env.example`. Public (non-secret) vars go in `wrangler.jsonc` under `vars`.
+---
 
-KV, D1, R2, and Durable Object bindings are configured in `wrangler.jsonc` — see https://developers.cloudflare.com/workers/wrangler/configuration/.
-
-
-
-## Routing
-
-This project uses [TanStack Router](https://tanstack.com/router) with file-based routing. Routes are managed as files in `src/routes`.
-
-### Adding A Route
-
-To add a new route to your application just add a new file in the `./src/routes` directory.
-
-TanStack will automatically generate the content of the route file for you.
-
-Now that you have two routes you can use a `Link` component to navigate between them.
-
-### Adding Links
-
-To use SPA (Single Page Application) navigation you will need to import the `Link` component from `@tanstack/react-router`.
-
-```tsx
-import { Link } from "@tanstack/react-router";
-```
-
-Then anywhere in your JSX you can use it like so:
-
-```tsx
-<Link to="/about">About</Link>
-```
-
-This will create a link that will navigate to the `/about` route.
-
-More information on the `Link` component can be found in the [Link documentation](https://tanstack.com/router/v1/docs/framework/react/api/router/linkComponent).
-
-### Using A Layout
-
-In the File Based Routing setup the layout is located in `src/routes/__root.tsx`. Anything you add to the root route will appear in all the routes. The route content will appear in the JSX where you render `{children}` in the `shellComponent`.
-
-Here is an example layout that includes a header:
-
-```tsx
-import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router'
-
-export const Route = createRootRoute({
-  head: () => ({
-    meta: [
-      { charSet: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { title: 'My App' },
-    ],
-  }),
-  shellComponent: ({ children }) => (
-    <html lang="en">
-      <head>
-        <HeadContent />
-      </head>
-      <body>
-        <header>
-          <nav>
-            <Link to="/">Home</Link>
-            <Link to="/about">About</Link>
-          </nav>
-        </header>
-        {children}
-        <Scripts />
-      </body>
-    </html>
-  ),
-})
-```
-
-More information on layouts can be found in the [Layouts documentation](https://tanstack.com/router/latest/docs/framework/react/guide/routing-concepts#layouts).
-
-## Server Functions
-
-TanStack Start provides server functions that allow you to write server-side code that seamlessly integrates with your client components.
-
-```tsx
-import { createServerFn } from '@tanstack/react-start'
-
-const getServerTime = createServerFn({
-  method: 'GET',
-}).handler(async () => {
-  return new Date().toISOString()
-})
-
-// Use in a component
-function MyComponent() {
-  const [time, setTime] = useState('')
-  
-  useEffect(() => {
-    getServerTime().then(setTime)
-  }, [])
-  
-  return <div>Server time: {time}</div>
-}
-```
-
-## API Routes
-
-You can create API routes by using the `server` property in your route definitions:
-
-```tsx
-import { createFileRoute } from '@tanstack/react-router'
-import { json } from '@tanstack/react-start'
-
-export const Route = createFileRoute('/api/hello')({
-  server: {
-    handlers: {
-      GET: () => json({ message: 'Hello, World!' }),
-    },
-  },
-})
-```
-
-## Data Fetching
-
-There are multiple ways to fetch data in your application. You can use TanStack Query to fetch data from a server. But you can also use the `loader` functionality built into TanStack Router to load the data for a route before it's rendered.
-
-For example:
-
-```tsx
-import { createFileRoute } from '@tanstack/react-router'
-
-export const Route = createFileRoute('/people')({
-  loader: async () => {
-    const response = await fetch('https://swapi.dev/api/people')
-    return response.json()
-  },
-  component: PeopleComponent,
-})
-
-function PeopleComponent() {
-  const data = Route.useLoaderData()
-  return (
-    <ul>
-      {data.results.map((person) => (
-        <li key={person.name}>{person.name}</li>
-      ))}
-    </ul>
-  )
-}
-```
-
-Loaders simplify your data fetching logic dramatically. Check out more information in the [Loader documentation](https://tanstack.com/router/latest/docs/framework/react/guide/data-loading#loader-parameters).
-
-# Demo files
-
-Files prefixed with `demo` can be safely deleted. They are there to provide a starting point for you to play around with the features you've installed.
-
-# Learn More
-
-You can learn more about all of the offerings from TanStack in the [TanStack documentation](https://tanstack.com).
-
-For TanStack Start specific documentation, visit [TanStack Start](https://tanstack.com/start).
+Built with [TanStack Start](https://tanstack.com/start). Discover more templates at **[tanstackship.com](https://tanstackship.com/)**.

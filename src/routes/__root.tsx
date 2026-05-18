@@ -15,7 +15,12 @@ export const Route = createRootRoute({
         content: 'width=device-width, initial-scale=1',
       },
       {
-        title: 'TanStack Start Starter',
+        title: 'Astra Air | Apple-like Landing Page',
+      },
+      {
+        name: 'description',
+        content:
+          'A polished Apple-inspired landing page concept for premium over-ear headphones, built with TanStack Start and motion-rich UI sections.',
       },
     ],
     links: [
